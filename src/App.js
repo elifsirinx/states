@@ -18,14 +18,20 @@ import { useState } from "react";
  * Mesela aşağıdaki gibi friends arrayine yeni bir eleman eklerken ...friends vererek daha sonra eklenen eleman
  * yazılmalıdır.Atama yapılırken arrayName... kısmı array içindeki önceki değerlerin korunmasını sağlar.
  *
+ * Statelerde obje atama işlemi yaparken ...address.title kısmını kullandık. Bu şekilde kullandığımız zaman title
+ * kısmını defaulttaki değerden alır. Diğer alanlar için default almak istersek bu şekilde alabiliriz.
+ * ...objectName.fieldName. Bütün alanları güncelleyeceksek bu kısma ihtiyacımız olamayacaktır.
+ *
  */
 
 function App() {
   //const [StateName, StateChangedFunctionName] = useState('defaultValue');
   const [name, setName] = useState("Elif");
   const [age, setAge] = useState("24");
-  //Array states
+  //Array state
   const [friends, setFriens] = useState(["Merve", "Ayse"]);
+  //Object state
+  const [address, setAddress] = useState({ title: "Istanbul", zip: 34756 });
 
   console.log(age, name);
 
@@ -47,6 +53,21 @@ function App() {
 
       <button onClick={() => setFriens([...friends, "Elf"])}>
         Add New Friend
+      </button>
+
+      <hr />
+      <br></br>
+
+      <h2>Address</h2>
+      <div>
+        {address.title} {address.zip}
+      </div>
+
+      <br></br>
+      <button
+        onClick={() => setAddress({ ...address, title: "İzmir", zip: 35743 })}
+      >
+        Add New Address
       </button>
     </div>
   );
