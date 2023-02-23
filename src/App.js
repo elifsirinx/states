@@ -14,12 +14,18 @@ import { useState } from "react";
  * Bu yüzden aşağıdaki console kısmında yazdırdığımız name ve age kısımları butonlara basıldığı zaman
  * yeniden render edildikten sonra gösterilir.
  *
+ * Statelerde atama işlemi yaparken tanımlanan state in ilk baştaki veri tipine uygun atama yapılmalı.
+ * Mesela aşağıdaki gibi friends arrayine yeni bir eleman eklerken ...friends vererek daha sonra eklenen eleman
+ * yazılmalıdır.Atama yapılırken arrayName... kısmı array içindeki önceki değerlerin korunmasını sağlar.
+ *
  */
 
 function App() {
   //const [StateName, StateChangedFunctionName] = useState('defaultValue');
   const [name, setName] = useState("Elif");
   const [age, setAge] = useState("24");
+  //Array states
+  const [friends, setFriens] = useState(["Merve", "Ayse"]);
 
   console.log(age, name);
 
@@ -30,6 +36,18 @@ function App() {
 
       <button onClick={() => setName("Merve")}>Change Name</button>
       <button onClick={() => setAge("25")}>Change Age</button>
+
+      <hr />
+      <br></br>
+
+      <h2>Friends</h2>
+      {friends.map((friend, index) => (
+        <div key={index}>{friend}</div>
+      ))}
+
+      <button onClick={() => setFriens([...friends, "Elf"])}>
+        Add New Friend
+      </button>
     </div>
   );
 }
